@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities{
+    .main.active{
+        @apply ml-0 w-full
+    }
+    .fixed-column {
+        @apply sticky bg-indigo-900 z-10 px-2 py-2 border-0  font-normal -tracking-wide rounded-sm
+    }
+    td.fixed-column {
+        @apply bg-white
+    }
+    .fixed-column:first-child {
+        @apply left-0
+    }
+}
