@@ -23,7 +23,9 @@ Route::post('authenticate-user', [Login::class, 'authenticateUser']);
 Route::get('logout', [Login::class, 'logoutUser']);
 
 Route::view('registration', 'registration');
-Route::post('sign-up', [Dashboard::class, 'register']);
+Route::post('sign-up', [Users::class, 'register']);
+Route::view('reset-password', 'reset-password');
+Route::post('new-password', [Users::class, 'newPassword']);
 Route::get('session', [Login::class, 'session']);
 
 Route::group(['middleware' => 'auth'], function () {

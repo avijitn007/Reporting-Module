@@ -12,8 +12,8 @@
             <h2 class="font-bold text-2xl text-center w-full h-16 flex items-center justify-center flex-col leading-3 pt-3 text-white">JETSAM<div class="text-[8px] leading-3 mt-1 mb-0 tracking-wider uppercase">Reporting Module</div></h2>
         </div>
         <div class="p-6">
-            <h2 class="text-2xl font-bold mb-5 text-indigo-800 text-center">Sign In</h2>
-            <form class="text-sm" action="{{ url('authenticate-user') }}" method="post">
+            <h2 class="text-2xl font-bold mb-5 text-indigo-800 text-center">Reset Password</h2>
+            <form class="text-sm" action="{{ url('new-password') }}" method="post">
             @csrf
                 <div class="mb-4">
                     <input type="email" name="email" placeholder="Enter username" id="username" class="mt-1 p-3  w-full rounded-md border border-slate-300 shadow-sm focus:ring-indigo-700">
@@ -25,8 +25,6 @@
                 </div>
                 <button type="submit" class="w-full py-2 bg-gradient-to-b from-indigo-600 to-blue-800 text-white rounded-md hover:to-indigo-700 text-lg tracking-wider active:to-bg-black">Sign In</button>
             </form>
-            <br> <a href="{{ url('registration') }}" >Register here</a>
-            <!-- <br> <a href="{{ url('reset-password') }}" style="text-align: right;">Forgot Password</a> -->
         </div>
     </div>
 </body>
