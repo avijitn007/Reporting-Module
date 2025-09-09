@@ -103,15 +103,25 @@
                                             @else
                                              No Image
                                             @endif
+                                            <input type="file" name="logo" id="logoUpload" accept="image/*" class="px-2 py-1 border h-8 rounded-sm w-full hidden" />
                                         </td>
-                                        <td class="px-2 py-2 border max-w-[90px] font-normal -tracking-wide">{{ $affiliate->name }}</td>
-                                        <td class="px-2 py-2 border max-w-[90px] font-normal -tracking-wide">{{ $affiliate->email }}</td>
-                                        <td class="px-2 py-2 border max-w-[90px] font-normal -tracking-wide">{{ $affiliate->phone }}</td>
+                                        <td class="px-2 py-2 border max-w-[90px] font-normal -tracking-wide">
+                                        <input type="text" name="name" id="affiliateName" class="w-full px-2 py-1 h-8 rounded-sm" placeholder="Affiliate Name" value="{{ $affiliate->name }}" disabled />
+                                        </td>
+                                        <td class="px-2 py-2 border max-w-[90px] font-normal -tracking-wide">
+                                        <input type="email" name="email" id="affiliateEmail" class="w-full px-2 py-1 h-8 rounded-sm" placeholder="Email" value="{{ $affiliate->email }}" disabled />
+                                        </td>
+                                        <td class="px-2 py-2 border max-w-[90px] font-normal -tracking-wide">
+                                        <input type="tel" name="phone" id="affiliatePhone" class="w-full px-2 py-1 h-8 rounded-sm" placeholder="Phone" value="{{ $affiliate->phone }}" maxlength="10" disabled />
+                                        </td>
+                                        <td class="px-2 py-2 border min-w-[50px] font-normal -tracking-wide">
                                         @if ($affiliate->status == 1)
-                                        <td class="px-2 py-2 border min-w-[50px] font-normal -tracking-wide"><a href="/deactivate-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-orange-600 to-orange-500 hover:from-orange-600 hover:to-orange-700 active:bg-black text-white px-4 py-1 rounded w-full">Deactivate</a></td>
+                                            <a href="/deactivate-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-orange-600 to-orange-500 hover:from-orange-600 hover:to-orange-700 active:bg-black text-white px-4 py-1 rounded w-full">Deactivate</a>
                                         @else
-                                        <td class="px-2 py-2 border min-w-[50px] font-normal -tracking-wide"><a href="/activate-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-indigo-600 to-indigo-500 hover:from-blue-600 hover:to-indigo-700 active:bg-black text-white px-4 py-1 rounded w-full" >Activate</a></td>
+                                        <a href="/activate-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-indigo-600 to-indigo-500 hover:from-blue-600 hover:to-indigo-700 active:bg-black text-white px-4 py-1 rounded w-full" >Activate</a>
                                         @endif
+                                        <a href="/update-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-black-600 to-black-500 hover:from-blue-600 hover:to-black-700 active:bg-black text-white px-4 py-1 rounded w-full" >Edit</a>
+                                        </td>
                                     </tr>
 
                                 @endforeach
