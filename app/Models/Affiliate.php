@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Affiliate extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+    //     // add any other updatable columns here
+    ];
+
+    // protected $guarded = [];
 }

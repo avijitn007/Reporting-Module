@@ -35,7 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('affiliates', [Affiliates::class, 'index']);
     Route::post('add-affiliate', [Affiliates::class, 'add']);
-    Route::get('update-affiliate/{id}', [Affiliates::class, 'update-affiliate']);
+    Route::get('edit-affiliate/{id}', [Affiliates::class, 'edit']);
+    Route::put('update-affiliate/{affiliate}',[Affiliates::class, 'update']);
     Route::get('deactivate-affiliate/{id}', [Affiliates::class, 'deactivate']);
     Route::get('activate-affiliate/{id}', [Affiliates::class, 'activate']);
 

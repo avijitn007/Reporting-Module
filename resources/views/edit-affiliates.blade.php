@@ -18,8 +18,9 @@
             <!-- headeing -->
             <h2 class="text-2xl my-5 px-2 font-bold text-blue-800">Update Affiliate</h2>
             <!-- Table Section -->
-            <form class="mt-4 p-1 border-4 border-sky-100 bg-slate-50 shadow-lg rounded-lg overflow-x-auto" method="post" action="{{ url('update-affiliate') }}" enctype="multipart/form-data">
+            <form class="mt-4 p-1 border-4 border-sky-100 bg-slate-50 shadow-lg rounded-lg overflow-x-auto" method="post" action="{{ url('update-affiliate/'.$affiliate->id) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="overflow-x-auto">
                     <form id="affiliateForm" class="w-full">
                         <table class="min-w-full bg-white border text-[12px] table-auto rounded-md overflow-hidden shadow-md">
@@ -35,20 +36,25 @@
                             <tbody id="affiliateTableBody">
                                 <tr>
                                     <td class="px-2 py-2 border min-w-[180px]">
+                                            @if ($affiliate->logo)
+                                             <img src="{{ url('storage/assets/uploads/'.$affiliate->logo) }}" alt="Logo" class="w-auto h-8 object-contain object-center mx-auto" />
+                                            @else
+                                             No Image
+                                            @endif
                                         <input type="file" name="logo" id="logoUpload" accept="image/*" class="px-2 py-1 border h-8 rounded-sm w-full" />
                                     </td>
                                     <td class="px-2 py-2 border min-w-[120px]">
-                                        <input type="text" name="name" id="affiliateName" class="w-full px-2 py-1 border h-8 rounded-sm" placeholder="Affiliate Name" value="{{ old('name') }}" required />
+                                        <input type="text" name="name" id="affiliateName" class="w-full px-2 py-1 border h-8 rounded-sm" placeholder="Affiliate Name" value="{{ $affiliate->name }}" required />
                                     </td>
                                     <td class="px-2 py-2 border min-w-[120px]">
-                                        <input type="email" name="email" id="affiliateEmail" class="w-full px-2 py-1 border h-8 rounded-sm" placeholder="Email" value="{{ old('email') }}" required />
+                                        <input type="email" name="email" id="affiliateEmail" class="w-full px-2 py-1 border h-8 rounded-sm" placeholder="Email" value="{{ $affiliate->email }}" required />
                                     </td>
                                     <td class="px-2 py-2 border min-w-[120px]">
-                                        <input type="tel" name="phone" id="affiliatePhone" class="w-full px-2 py-1 border h-8 rounded-sm" placeholder="Phone" value="{{ old('phone') }}" maxlength="10" required />
+                                        <input type="tel" name="phone" id="affiliatePhone" class="w-full px-2 py-1 border h-8 rounded-sm" placeholder="Phone" value="{{ $affiliate->phone }}" maxlength="10" required />
                                     </td>
                                     <td class="px-2 py-2 border min-w-[120px]">
                                         <button type="submit" class="bg-gradient-to-br h-8 from-indigo-700 to-blue-600 hover:from-blue-600 hover:to-indigo-700 active:bg-black text-white px-4 py-1 rounded w-full">
-                                            Add Affiliate
+                                            Update Affiliate
                                         </button>
                                     </td>
                                 </tr>

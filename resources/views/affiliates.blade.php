@@ -120,7 +120,7 @@
                                         @else
                                         <a href="/activate-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-indigo-600 to-indigo-500 hover:from-blue-600 hover:to-indigo-700 active:bg-black text-white px-4 py-1 rounded w-full" >Activate</a>
                                         @endif
-                                        <a href="/update-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-black-600 to-black-500 hover:from-blue-600 hover:to-black-700 active:bg-black text-white px-4 py-1 rounded w-full" >Edit</a>
+                                        <a href="/edit-affiliate/{{$affiliate->id}}" class="bg-gradient-to-br h-8 from-blue-500 to-blue-800 hover:from-blue-600 hover:to-black active:bg-black text-white px-4 py-1 rounded w-full" >Edit</a>
                                         </td>
                                     </tr>
 
