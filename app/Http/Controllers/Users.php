@@ -26,11 +26,26 @@ class Users extends Controller
         // return DB::table('users')->insertGetId($this->user);
     }
 
+    public function users(){
+        $all_users = User::all();
+
+        return view('users',['users'=>$all_users]);
+    }
+
     public function newPassword(Request $request){
         $user = $this->user->where('email',$request->email)->first();
         // $this->user->email = $request->email;
         $user->password = $request->password;
         $user->save();
         return redirect('login');
+    }
+
+    public function updateRole(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect('/users');
     }
 }

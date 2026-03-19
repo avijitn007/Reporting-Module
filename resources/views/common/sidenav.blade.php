@@ -13,6 +13,15 @@
             </a>
         </li>
         
+        <li class="mb-1 group {{ request()->is('users') ? 'selected' : '' }} menu-list">
+            @if(Auth::user() && Auth::user()->role == 'admin')
+            <a href="/users" class="flex font-semibold items-center py-2 px-4 text-slate-100 hover:bg-blue-950 hover:text-blue-100 rounded-md group-[.active]:bg-blue-800 group-[.active]:text-white group-[.selected]:bg-blue-950 group-[.selected]:text-slate-100">
+                <i class='bx bx-user-circle mr-3 text-lg'></i>
+                <span class="text-sm menu-link">Users</span>
+            </a>
+            @endif
+        </li>
+        
         <li class="mb-1 group  {{ request()->is('affiliates') || request()->is('campaigns') ? 'selected' : '' }} menu-list">
             <a href="javascript:void(0)" class=" relative z-[1] flex font-semibold items-center py-2 px-4 text-slate-100 hover:bg-blue-950 hover:text-slate-100 rounded-md group-[.active]:bg-blue-800 group-[.active]:text-white group-[.selected]:bg-blue-950 group-[.selected]:text-slate-100 sidebar-dropdown-toggle">
                 <i class='bx bx-network-chart mr-3 text-lg' ></i>                 

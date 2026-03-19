@@ -29,8 +29,11 @@ Route::post('new-password', [Users::class, 'newPassword']);
 Route::get('session', [Login::class, 'session']);
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('users', [Users::class, 'users']);
+        Route::post('update-role/{id}', [Users::class, 'updateRole']);
+    });
 
-    Route::get('users', [Dashboard::class, 'users']);
     Route::get('/Dashboard', [Dashboard::class, 'index']);
 
     Route::get('affiliates', [Affiliates::class, 'index']);

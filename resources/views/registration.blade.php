@@ -9,10 +9,12 @@
 <body>
     <section class="bg-gray-50 dark:bg-gray-900">
 
-    <div class="bg-blue-700 flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">    
-        @if(session('response'))
-            {{ session('response') }}
-        @endif
+    <div class="bg-blue-700 flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">  
+        <div style="color: white; font-size: 20px; margin-bottom: 20px;">
+            @if(session('response'))
+                {{ session('response') }}
+            @endif
+        </div>  
         <p class="flex items-center mb-6 text-2xl font-semibold text-white dark:text-white">
             Sign up form 
         </p>

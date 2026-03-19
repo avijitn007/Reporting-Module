@@ -87,12 +87,6 @@ class Dashboard extends Controller
         return view('Dashboard',['affiliates'=>$all_affiliates, 'data_counts_campaigns'=>$data_counts_campaigns, 'all_data'=>$all_data, 'data_counts_affiliate' => $data_counts_affiliate, 'dates'=>[$start_date,$end_date]]);
     }
 
-    public function users(){
-        $all_users = DB::table('users')->get();
-
-        return "<h1>Coming soon...</h1>"; //view('Dashboard',['users'=>$all_users]);
-    }
-
     public function register(Request $request){
         $data = new User();
         // $data = $request->all();
