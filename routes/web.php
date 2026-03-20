@@ -30,7 +30,7 @@ Route::get('session', [Login::class, 'session']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('users', [Users::class, 'users']);
+        Route::get('users', [Users::class, 'index']);
         Route::post('update-role/{id}', [Users::class, 'updateRole']);
     });
 

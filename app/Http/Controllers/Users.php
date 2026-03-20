@@ -14,6 +14,12 @@ class Users extends Controller
         $this->user = new User();
     }
     
+    public function index(){
+        $all_users = User::all();
+
+        return view('users',['users'=>$all_users]);
+    }
+    
     public function register(Request $request){
         
         // $this->user = $request->all();
@@ -26,11 +32,6 @@ class Users extends Controller
         // return DB::table('users')->insertGetId($this->user);
     }
 
-    public function users(){
-        $all_users = User::all();
-
-        return view('users',['users'=>$all_users]);
-    }
 
     public function newPassword(Request $request){
         $user = $this->user->where('email',$request->email)->first();
