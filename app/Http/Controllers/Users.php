@@ -49,4 +49,13 @@ class Users extends Controller
 
         return redirect('/users');
     }
+
+    public function deactivate(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->status = $request->status;
+        $user->save();
+
+        return redirect('/users');
+    }
 }
