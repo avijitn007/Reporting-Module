@@ -19,11 +19,14 @@
             Sign up form 
         </p>
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8 relative">
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Create an account
-                </h1>
-                <form class="space-y-4 md:space-y-6" action="{{ url('sign-up') }}" method="post">
+                </h1> 
+                <form class="space-y-4 md:space-y-6" action="{{ url('sign-up') }}" method="post" id="registration-form">
+                    <div id="loader" class="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center hidden">
+                        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600"></div>
+                    </div>
                     @csrf
                     <div>
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
@@ -58,5 +61,13 @@
         </div>
     </div>
     </section>
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function() {
+            document.getElementById('loader').classList.remove('hidden');
+            const button = document.querySelector('#registration-form button[type="submit"]');
+            button.setAttribute('disabled', 'disabled');
+            button.innerText = 'Creating account...';
+        });
+    </script>
 </body>
 </html>

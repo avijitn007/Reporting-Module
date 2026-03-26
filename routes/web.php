@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'admin'], function () {
         Route::get('users', [Users::class, 'index']);
         Route::post('update-role/{id}', [Users::class, 'updateRole']);
-        Route::post('deactivate-user/{id}', [Users::class, 'deactivate']);
+        Route::get('deactivate-user/{id}', [Users::class, 'deactivate']);
     });
 
     Route::get('/Dashboard', [Dashboard::class, 'index']);

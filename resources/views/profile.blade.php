@@ -19,7 +19,10 @@
                 <!-- headeing -->
                 <h2 class="text-2xl my-5 px-2 font-bold text-blue-800">Your Profile</h2>
 
-                <form class="mt-4 p-4 border-4 border-sky-100 bg-slate-50 shadow-lg rounded-lg" method="post" action="{{ url('update-profile') }}">
+                <form class="mt-4 p-4 border-4 border-sky-100 bg-slate-50 shadow-lg rounded-lg relative" method="post" action="{{ url('update-profile') }}" id="profile-update-form">
+                    <div id="loader" class="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center hidden z-10">
+                        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600"></div>
+                    </div>
                     @csrf
                     <div class="space-y-4">
                         <div>
@@ -92,6 +95,13 @@
                 </form>
 
                 <script>
+                    document.getElementById('profile-update-form').addEventListener('submit', function() {
+                        document.getElementById('loader').classList.remove('hidden');
+                        const button = document.querySelector('#profile-update-form button[type="submit"]');
+                        button.setAttribute('disabled', 'disabled');
+                        button.innerText = 'Updating...';
+                    });
+
                     document.getElementById('changePasswordBtn').addEventListener('click', function() {
                         document.getElementById('newPasswordFields').classList.toggle('hidden');
                     });
@@ -102,18 +112,20 @@
                         const eyeIcon = document.getElementById(eyeIconId);
                         const eyeOffIcon = document.getElementById(eyeOffIconId);
 
-                        button.addEventListener('click', function () {
-                            if (passwordInput.type === 'password') {
-                                passwordInput.type = 'text';
-                                eyeIcon.classList.add('hidden');
-                                eyeOffIcon.classList.remove('hidden');
-                            } else {
-                                passwordInput.type = 'password';
-                                eyeIcon.classList.remove('hidden');
-                                eyeOffIcon.classList.add('hidden');
-                            }
-                        });
-                    }
+                        if (button && passwordInput && eyeIcon && eyeOffIcon) {
+                            button.addEventListener('click', function () {
+                                if (passwordInput.type === 'password') {
+                                    passwordInput.type = 'text';
+                                    eyeIcon.classList.add('hidden');
+                                    eyeOffIcon.classList.remove('hidden');
+                                } else {
+                                    passwordInput.type = 'password';
+                                    eyeIcon.classList.remove('hidden');
+                                    eyeOffIcon.classList.add('hidden');
+                                }
+                            });
+                        }
+                    } 
 
                     createPasswordToggle('toggleCurrentPassword', 'current_password', 'eyeIcon', 'eyeOffIcon');
                     createPasswordToggle('togglePassword', 'password', 'eyeIconPassword', 'eyeOffIconPassword');
