@@ -8,6 +8,13 @@
 </head>
 <body class="bg-blue-700 flex items-center justify-center min-h-screen">
     <div class="bg-white shadow-lg rounded-lg max-w-sm w-full overflow-hidden">
+
+        @if(session('response'))
+        <div style="color: white; font-size: 20px; margin-bottom: 20px;">
+            {{ session('response') }}
+        </div>
+        @endif
+        
         <div class="bg-gradient-to-br from-indigo-700 to-blue-950 py-3">
             <h2 class="font-bold text-2xl text-center w-full h-16 flex items-center justify-center flex-col leading-3 pt-3 text-white">JETSAM<div class="text-[8px] leading-3 mt-1 mb-0 tracking-wider uppercase">Reporting Module</div></h2>
         </div>

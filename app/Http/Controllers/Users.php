@@ -52,10 +52,10 @@ class Users extends Controller
         return redirect('/users');
     }
 
-    public function deactivate(Request $request, $id)
+    public function changeStatus($id)
     {
         $this->user = User::find($id);
-        $this->user->status = $request->status;
+        $this->user->status = $this->user->status == 1 ? 0 : 1;
         $this->user->save();
 
         return redirect('/users');

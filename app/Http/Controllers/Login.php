@@ -21,6 +21,12 @@ class Login extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
+            if(Auth::user()->status == 0){
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Your account is deactivated. Please contact admin.',
+                ]);
+            }
             $request->session()->regenerate();
 
             return redirect()->intended('/Dashboard');

@@ -50,7 +50,11 @@
                                         <td class="px-2 py-2 border min-w-[50px] font-normal -tracking-wide">
                                             <button type="submit" class="bg-gradient-to-br h-8 from-blue-500 to-blue-800 hover:from-blue-600 hover:to-black active:bg-black text-white px-4 py-1 rounded w-1/2 mx-auto block" >Update Role</button>
                                             </form>
-                                            <button onclick="window.location.href='{{ url('deactivate-user',$user->id) }}'" class="bg-gradient-to-br h-8 from-red-500 to-red-800 hover:from-red-600 hover:to-red-900 active:bg-red-950 text-white px-4 py-1 rounded w-1/2 mx-auto block mt-1">Deactivate User</button> 
+                                            @if ($user->status == 1)
+                                            <button onclick="window.location.href='{{ url('update-status',$user->id) }}'" class="bg-gradient-to-br h-8 from-orange-600 to-orange-500 hover:from-orange-600 hover:to-orange-700 active:bg-black text-white px-4 py-1 rounded w-1/2 mx-auto block mt-1">Deactivate</button> 
+                                            @else
+                                            <button onclick="window.location.href='{{ url('update-status',$user->id) }}'" class="bg-gradient-to-br h-8 from-indigo-600 to-indigo-500 hover:from-blue-600 hover:to-indigo-700 active:bg-black text-white px-4 py-1 rounded w-1/2 mx-auto block mt-1">Activate</button> 
+                                            @endif
                                         </td>
                                     </tr>
 
