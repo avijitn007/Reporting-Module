@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class Users extends Controller
@@ -33,29 +35,65 @@ class Users extends Controller
     }
 
 
-    public function newPassword(Request $request){
-        $user = $this->user->where('email',$request->email)->first();
+    /* public function newPassword(Request $request){
+        $this->user = $this->user->where('email',$request->email)->first();
         // $this->user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
+        $this->user->password = $request->password;
+        $this->user->save();
         return redirect('login');
-    }
+    } */
 
     public function updateRole(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->role = $request->role;
-        $user->save();
+        $this->user = User::find($id);
+        $this->user->role = $request->role;
+        $this->user->save();
 
         return redirect('/users');
     }
 
     public function deactivate(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->status = $request->status;
-        $user->save();
+        $this->user = User::find($id);
+        $this->user->status = $request->status;
+        $this->user->save();
 
         return redirect('/users');
+    }
+
+    public function profile(){
+        $user = Auth::user();
+        return view('profile', ['user'=>$user]);
+    }
+
+    public function updateProfile(Request $request){
+
+        $this->user = Auth::user();
+        $request->validate([
+            'name' => 'required',
+            'password' => [
+                'nullable',
+                'min:8',
+                'confirmed',
+                function ($attribute, $value, $fail) {
+                    if (Hash::check($value, $this->user->password )) {
+                        $fail('The new password cannot be the same as your current password.');
+                    }
+                }
+            ],
+        ]);
+        
+        $this->user->name = $request->name;
+        if ($request->filled('password')) {
+            $this->user->password = $request->password;
+        }
+
+        if($this->user->isDirty()){
+            $this->user->save();
+            return redirect('/profile')->with('response', 'Profile updated successfully!');
+        }else{
+            return redirect('/profile')->with('response', 'No changes made!');
+        }
+
     }
 }

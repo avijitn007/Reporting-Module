@@ -25,8 +25,10 @@
                 </div>
                 <button type="submit" class="w-full py-2 bg-gradient-to-b from-indigo-600 to-blue-800 text-white rounded-md hover:to-indigo-700 text-lg tracking-wider active:to-bg-black">Sign In</button>
             </form>
-            <br> <a href="{{ url('registration') }}" >-> Register Here</a>
-            <!-- <br> <a href="{{ url('reset-password') }}" style="text-align: right;">Forgot Password</a> -->
+            <div class="mt-4 flex justify-between text-sm">
+                <a href="{{ url('registration') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Register Here</a>
+                <a href="{{ url('forgot-password') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot Password?</a>
+            </div>
         </div>
     </div>
 </body>

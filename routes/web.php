@@ -3,29 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
-// use Illuminate\Support\Facades\Auth;
-// use Illuminate\Http\RedirectResponse;
-// use Illuminate\Auth\Middleware\Authenticate;
-// use Illuminate\Support\Facades\Middleware;
+
 
 // if(!Auth::check()){
 //     // echo 'no auth';
-
 // }
 
+
+use App\Http\Controllers\PasswordResetController;
+
+Route::middleware('guest')->group(function () {
+    Route::view('/forgot-password', 'forgot-password');
+    Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset-password', function () {
+        return view('reset-password', ['token' =>  request('token'), 'email' => request('email')]);
+    })->name('password.reset');
+    Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+});
 
 Route::get('/', function () {
     return redirect('Dashboard');
 });
 
-Route::view('login', 'login');
+Route::view('login', 'login')->name('login');
 Route::post('authenticate-user', [Login::class, 'authenticateUser']);
 Route::get('logout', [Login::class, 'logoutUser']);
 
 Route::view('registration', 'registration');
 Route::post('sign-up', [Users::class, 'register']);
-Route::view('reset-password', 'reset-password');
-Route::post('new-password', [Users::class, 'newPassword']);
+// Route::view('forgot-password', 'forgot-password');
+// Route::post('forgot-password', [Users::class, 'sendResetLink']);
+
+// Route::view('reset-password', 'reset-password');
+// Route::post('new-password', [Users::class, 'newPassword']);
 Route::get('session', [Login::class, 'session']);
 
 Route::group(['middleware' => 'auth'], function () {
@@ -51,5 +61,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('deactivate-campaign/{id}', [Campaigns::class,'deactivate']);
     Route::get('activate-campaign/{id}', [Campaigns::class,'activate']);
     Route::post('remove-campaign', [Campaigns::class, 'remove']);
+
+
+    Route::get('profile', [Users::class, 'profile']);
+    Route::post('update-profile', [Users::class, 'updateProfile']);
 
 });
